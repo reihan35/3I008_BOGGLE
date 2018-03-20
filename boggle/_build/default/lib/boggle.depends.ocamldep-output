@@ -1,8 +1,0 @@
-lib/board.ml: Array Iter
-lib/boggle.ml-gen: Boggle__Board Boggle__Iter Boggle__Lexicon Boggle__Main Boggle__Path Boggle__RandomLetter Boggle__Solver
-lib/iter.ml:
-lib/lexicon.ml: Char Map
-lib/main.ml: Board
-lib/path.ml:
-lib/randomLetter.ml: Array Char Random
-lib/solver.ml:

@@ -7,9 +7,6 @@ module Iter = Boggle__Iter
 (** @canonical Boggle.Lexicon *)
 module Lexicon = Boggle__Lexicon
 
-(** @canonical Boggle.Main *)
-module Main = Boggle__Main
-
 (** @canonical Boggle.Path *)
 module Path = Boggle__Path
 
