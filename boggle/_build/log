@@ -1,87 +1,12 @@
-# jbuilder exec boggle
+# jbuilder build @install
 # OCAMLPARAM: unset
-# Workspace root: /users/nfs/Etu2/3535002/3I008_BOGGLE/boggle
-$ /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlfind printconf path > /tmp/jbuildb8e2cc.output
-$ /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuildc85ee0.output
-# Jbuilder context:
-#  ((name default)
-#   (kind default)
-#   (merlin true)
-#   (for_host ())
-#   (build_dir _build/default)
-#   (toplevel_path (/users/Enseignants/suzanne/.opam/4.06.0/lib/toplevel))
-#   (ocaml_bin /users/Enseignants/suzanne/.opam/4.06.0/bin)
-#   (ocaml /users/Enseignants/suzanne/.opam/4.06.0/bin/ocaml)
-#   (ocamlc /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlc.opt)
-#   (ocamlopt (/users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlopt.opt))
-#   (ocamldep /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamldep.opt)
-#   (ocamlmklib /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlmklib.opt)
-#   (env ())
-#   (findlib_path (/users/Enseignants/suzanne/.opam/4.06.0/lib))
-#   (arch_sixtyfour true)
-#   (natdynlink_supported true)
-#   (opam_vars ())
-#   (ocamlc_config
-#    ((afl_instrument false)
-#     (architecture amd64)
-#     (asm as)
-#     (asm_cfi_supported true)
-#     (ast_impl_magic_number Caml1999M022)
-#     (ast_intf_magic_number Caml1999N022)
-#     (bytecomp_c_compiler
-#      gcc -std=gnu99 -O2 -fno-strict-aliasing -fwrapv -fno-builtin-memcmp -fPIC -D_FILE_OFFSET_BITS=64 -D_REENTRANT)
-#     (bytecomp_c_libraries -lm  -ldl -lcurses -lpthread                  )
-#     (c_compiler gcc)
-#     (cc_profile -pg)
-#     (ccomp_type cc)
-#     (cma_magic_number Caml1999A022)
-#     (cmi_magic_number Caml1999I022)
-#     (cmo_magic_number Caml1999O022)
-#     (cmt_magic_number Caml1999T022)
-#     (cmx_magic_number Caml1999Y022)
-#     (cmxa_magic_number Caml1999Z022)
-#     (cmxs_magic_number Caml1999D022)
-#     (default_executable_name a.out)
-#     (default_safe_string true)
-#     (exec_magic_number Caml1999X011)
-#     (ext_asm .s)
-#     (ext_dll .so)
-#     (ext_exe "")
-#     (ext_lib .a)
-#     (ext_obj .o)
-#     (flambda false)
-#     (flat_float_array true)
-#     (host x86_64-unknown-linux-gnu)
-#     (int_size 63)
-#     (model default)
-#     (native_c_compiler
-#      gcc -std=gnu99 -O2 -fno-strict-aliasing -fwrapv -fno-builtin-memcmp -D_FILE_OFFSET_BITS=64 -D_REENTRANT)
-#     (native_c_libraries -lm  -ldl)
-#     (native_pack_linker ld -r -o )
-#     (ocamlc_cflags
-#      -std=gnu99 -O2 -fno-strict-aliasing -fwrapv -fno-builtin-memcmp -fPIC)
-#     (ocamlc_cppflags -D_FILE_OFFSET_BITS=64 -D_REENTRANT)
-#     (ocamlopt_cflags
-#      -std=gnu99 -O2 -fno-strict-aliasing -fwrapv -fno-builtin-memcmp)
-#     (ocamlopt_cppflags -D_FILE_OFFSET_BITS=64 -D_REENTRANT)
-#     (os_type Unix)
-#     (profiling true)
-#     (ranlib ranlib)
-#     (safe_string false)
-#     (spacetime false)
-#     (standard_library /users/Enseignants/suzanne/.opam/4.06.0/lib/ocaml)
-#     (standard_library_default
-#      /users/Enseignants/suzanne/.opam/4.06.0/lib/ocaml)
-#     (standard_runtime /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlrun)
-#     (system linux)
-#     (systhread_supported true)
-#     (target x86_64-unknown-linux-gnu)
-#     (version 4.06.0)
-#     (windows_unicode false)
-#     (with_frame_pointers false)
-#     (word_size 64)))
-#   (which
-#    ((ocaml (/users/Enseignants/suzanne/.opam/4.06.0/bin/ocaml))
-#     (ocamlc (/users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlc.opt))
-#     (ocamlfind (/users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlfind)))))
-# Workspace root: /users/nfs/Etu2/3535002/3I008_BOGGLE/boggle
+$ /Users/lauranguyen/.opam/4.06.0/bin/ocamlc.opt -config > /var/folders/gc/snvmgkkj31x_qxx_693rnwlc0000gn/T/jbuild24e580.output
+$ (cd _build/default && /Users/lauranguyen/.opam/4.06.0/bin/ocamldep.opt -modules -impl lib/path.ml) > _build/default/lib/path.ml.d
+$ (cd _build/default && /Users/lauranguyen/.opam/4.06.0/bin/ocamlc.opt -w -40 -g -bin-annot -I lib/.boggle.objs -no-alias-deps -open Boggle -o lib/.boggle.objs/boggle__Path.cmo -c -impl lib/path.ml)
+> File "lib/path.ml", line 8, characters 35-53:
+> Error: Unbound value Board.is_valid_pos
+[2]
+$ (cd _build/default && /Users/lauranguyen/.opam/4.06.0/bin/ocamlopt.opt -w -40 -g -I lib/.boggle.objs -no-alias-deps -open Boggle -o lib/.boggle.objs/boggle__Path.cmx -c -impl lib/path.ml)
+> File "lib/path.ml", line 8, characters 35-53:
+> Error: Unbound value Board.is_valid_pos
+[2]

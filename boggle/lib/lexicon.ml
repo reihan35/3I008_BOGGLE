@@ -23,7 +23,7 @@ let has_empty_word { eow; words } =
   failwith "Unimplemented"
 
 let rec is_empty { eow; words } =
-  failwith "Unimplemented"
+  if words=empty.words then true else false
 
 let add word lexicon =
   failwith "Unimplemented"
