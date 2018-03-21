@@ -13,7 +13,7 @@ let main () =
 *)
 
 let main () =
-	let board = [|[|'a';'b';'c'|];[|'e';'f';'g'|];[|'p';'m';'m'|]|]
-	in Board.all_positions board;;
+	let board = Board.make()
+	in Board.print board;;
 	
 let () = main ()

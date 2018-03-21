@@ -6,6 +6,7 @@ let get_letter board i j =
 let dim board =
   Array.length board;;
 
+(* 
 let all_positions board =
 	let n = dim board in
 	let iter = ref Iter.empty in
@@ -15,7 +16,13 @@ let all_positions board =
 		done
 	done;
 	!iter;;
-  
+*)
+
+let all_positions board = 
+	let n = dim board 
+	in
+	Iter.product (Iter.range 0 (n-1)) (Iter.range 0 (n-1))
+
 let are_neighbours board (i, j) (i', j') =
   failwith "Unimplemented"
 
@@ -31,5 +38,12 @@ let make () (* dim make_char*) =
 let from_string s =
   failwith "Unimplemented"
 
+(*
+let ij_from_iter iter =
+	match iter with
+	|((a,b -> c) -> c) -> (a,b);;
+*)
+
 let print board =
-	Iter.iter (print_char) (Iter.map get_letter (all_positions board));;
+	Iter.iter (print_char) 
+		(Iter.map (fun (i,j) -> (get_letter board i j)) (all_positions board));;
