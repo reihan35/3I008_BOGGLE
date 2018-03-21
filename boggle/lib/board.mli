@@ -25,8 +25,7 @@ val are_neighbours : t -> int * int -> int * int -> bool
 val neighbours : t -> int * int -> (int * int) Iter.t
 (** Un itérateur sur les cases voisines d'une case donnée. *)
 
-(*val make : int -> (unit -> char) -> t*)
-val make : unit -> t
+val make : int -> (unit -> char) -> t
 (** [make dim make_char] crée une grille de dimension [dim] et appelle
    [make_char ()] pour remplir chaque case. [make_char] est une
    fonction renvoyant un caractère à chaque appel. Voir le module
