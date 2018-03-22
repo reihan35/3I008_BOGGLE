@@ -25,10 +25,12 @@ let is_empty { eow; words } =
 (*let rec is_empty { eow; words } =
   if words=empty.words then true else false*)
 
-(*
+
 let has_empty_word { eow; words } =
-  Iter.filter (fun x -> if x=true then true else false )(Iter.map (fun x -> is_empty { false; x }) M.to_iter words)
-*)
+  failwith "Unimplemented"
+
+(*  Iter.filter (fun x -> if x=true then true else false )(Iter.map (fun x -> is_empty { false; x }) M.to_iter words) *)
+
 
   (*match (eow,words) with
   |(false,words) when is_empty {eow; words} = true -> true
@@ -39,10 +41,14 @@ let add word lexicon =
   let rec traverse n t =
     if n < String.length word then
       match t with
-		  	| empty -> {eow= (n=(String.length word)-1); words=(traverse (n+1) empty)}
-        | {eow=false; words=dict} when exists (fun (c,tr) -> c = word.[n]) dict ->
-            traverse (n+1) (find word.[n] dict)
-        | {eow=b; words=dict} -> {eow=false; words= add word.[n] (traverse (n+1) empty)}
+        (* noeud vide *)
+		  	| empty -> {eow= (n=(String.length word)-1); words=(M.add word.[n] (traverse (n+1) empty) M.empty)}
+        (* la lettre courante est dans le dictionnaire : modifier le dictionnaire correspondant à cette lettre *)
+        | {eow=b; words=dict} (*when Iter.exists (fun (c,tr) -> c = word.[n]) (M.to_iter dict) *)-> 
+              {eow = (b || (n=(String.length word) -1)); words=(M.remove word.[n] dict)};
+              {eow = (b || (n=(String.length word) -1)); words= (M.add word.[n] (traverse (n+1) empty) dict)}
+        (* la lettre courante n'est pas dans le dictionnaire : l'ajouter *)
+        | {eow=b; words=dict} -> {eow = b; words = (M.add word.[n] (traverse (n+1) empty) dict)}
 
 	  else empty
   in traverse 0 lexicon
