@@ -16,11 +16,16 @@ let main () =
 
   (*let random_letter_fr = RandomLetter.picker RandomLetter.Distribution.fr in
   let board = Board.make 4 random_letter_fr
-  in Board.print board;;*)
+  in Board.print board;; *)
 
-	let board = Board.from_string "hugowyborskammmm" in
+	let board = Board.from_string "abcd" in
     match board with
-    | Some(t) -> Board.print t
-    | None -> print_string("Désolées pas carré");;
-	
+    | None -> print_string("Désolées pas carré")
+    | Some(t) -> Board.print t;
+                 let p = Path.add_tile t Path.empty (0,0) in
+                 match p with
+                  |Some a->print_string (Path.to_string t a);
+                  |None->print_string( Path.to_string t Path.empty);;
+
+
 let () = main ()

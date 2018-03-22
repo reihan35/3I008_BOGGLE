@@ -53,7 +53,7 @@ val filter : ('a -> bool) -> 'a t -> 'a t
 (** [filter predicate s] itère sur les éléments [x] de [s] pour
    lesquels [predicate x] vaut [true]. *)
 
-val fold : ('acc -> 'a -> 'acc) -> 'acc -> 'a t -> 'acc
+val fold: ('acc -> 'a -> 'acc) -> 'acc -> 'a t -> 'acc
 (** Si [s] est l'itérateur sur [x1, x2, ..., xn], [fold f init s] est
    [f (... (f (f acc x1) x2) ... ) xn]. Force l'itérateur. *)
 

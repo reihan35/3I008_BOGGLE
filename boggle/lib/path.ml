@@ -5,7 +5,7 @@ let empty = []
 let add_tile board path (i, j) =
   match path with
   | [] -> Some([(i,j)])
-  | _ when List.mem (i,j) path && (Board.is_valid_pos board (i,j)) && (Board.are_neighbours board (List.nth path (List.length path)) (i, j)) ->Some(List.cons (i,j) path)
+  | _ when (List.mem (i,j) path==false) && (Board.is_valid_pos board (i,j)) && (Board.are_neighbours board (List.nth path ((List.length path)-1)) (i, j)) ->Some(List.cons (i,j) path)
   | _ ->None
 
 let rec to_string board path =

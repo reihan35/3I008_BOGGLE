@@ -43,7 +43,8 @@ let make dim make_char =
 let from_string s =
   let n = String.length s in
   match n with
-  | n when (Iter.exists (fun x-> if x*x = n then true else false)(Iter.range 1 10000))->
+  |n when n=0 ->None
+  |n when (Iter.exists (fun x-> if x*x = n then true else false)(Iter.range 1 10000))->
     let dim = (int_of_float(sqrt (float_of_int n))) in
     let cpt = ref 0 in
       let board = ref (Array.make_matrix dim dim 'a') in
@@ -54,12 +55,11 @@ let from_string s =
   			  done
   		  done;
   	  Some(!board)
-
-  | n -> None
+  |n ->None
 
 let print board =
   let cpt= ref 0 in
-	Iter.iter (fun x -> 
+	Iter.iter (fun x ->
 					  if !cpt = 0 then print_string "{[";
 					  print_char x;
                       incr cpt;
