@@ -59,8 +59,13 @@ let from_string s =
 
 let print board =
   let cpt= ref 0 in
-	Iter.iter (fun x -> print_char x;
+	Iter.iter (fun x -> 
+					  if !cpt = 0 then print_string "{[";
+					  print_char x;
                       incr cpt;
-                      if !cpt mod (dim board)=0 then
-                      print_char '\n')
+                      if !cpt mod (dim board)=0 && !cpt<dim board*dim board then
+						print_char '\n';
+					  if !cpt== dim board*dim board then
+						  print_string "]}" ;
+                      		)
 		(Iter.map (fun (i,j) -> (get_letter board i j)) (all_positions board));;

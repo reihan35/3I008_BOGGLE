@@ -1,5 +1,4 @@
-B ../_build/default/bin/.main.eobjs
-B ../_build/default/lib/.boggle.objs
+B ../_build/default/bin
+B ../_build/default/lib
 FLG -w -40
-S .
 S ../lib

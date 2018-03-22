@@ -8,6 +8,8 @@ val get_letter : t -> int -> int -> char
 (** [get_letter board i j] renvoie le caractère présent à la ligne [i]
    et à la colonne [j] sur la grille [board]. *)
 
+val is_valid_pos : t->int * int->bool
+
 val dim : t -> int
 (** La dimension d'une grille, c'est à dire le nombre de lignes (qui
     est égal au nombre de colonnes). *)

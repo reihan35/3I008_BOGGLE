@@ -4,12 +4,16 @@ let empty = []
 
 let add_tile board path (i, j) =
   match path with
-  | [] -> [(i,j)]
-  | _ when List.mem (i,j) path && (Board.is_valid_pos board (i, j)) && Board.are_neighbours board (List.nth path (List.length path)) (i, j) -> List.cons path (i,j)
-  | _ -> path
+  | [] -> Some([(i,j)])
+  | _ when List.mem (i,j) path && (Board.is_valid_pos board (i,j)) && (Board.are_neighbours board (List.nth path (List.length path)) (i, j)) ->Some(List.cons (i,j) path)
+  | _ ->None
 
 let rec to_string board path =
-  failwith "Unimplemented"
+	match path with
+	|[]->""
+	|(a,b)::q -> (String.make 1 (Board.get_letter board a b))^to_string board q
 
 let iter_to_words board all_paths =
-  failwith "Unimplemented"
+  	Iter.map (fun x -> to_string board x) all_paths
+
+

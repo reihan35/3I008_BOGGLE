@@ -13,13 +13,14 @@ let main () =
 *)
 
 let main () =
-  let random_letter_fr = RandomLetter.picker RandomLetter.Distribution.fr in
+
+  (*let random_letter_fr = RandomLetter.picker RandomLetter.Distribution.fr in
   let board = Board.make 4 random_letter_fr
-  in Board.print board;;
-(*
+  in Board.print board;;*)
+
 	let board = Board.from_string "hugowyborskammmm" in
     match board with
     | Some(t) -> Board.print t
     | None -> print_string("Désolées pas carré");;
-*)
+	
 let () = main ()
