@@ -19,11 +19,9 @@ let empty =
     words = M.empty;
   }
 
-let is_empty { eow; words } =
-  if words=empty.words then true else false
-
-(*let rec is_empty { eow; words } =
-  if words=empty.words then true else false*)
+let rec is_empty { eow; words } =
+  (* failwith "Unimplemented" *)
+  eow==false && M.for_all (fun k t -> is_empty t) words 
 
 
 let has_empty_word { eow; words } =
@@ -40,38 +38,40 @@ let has_empty_word { eow; words } =
 let add word lexicon =
   let rec traverse n t =
     if n < String.length word then
-      match t with
-        (* noeud vide *)
-		  	| empty -> {eow= (n=(String.length word)-1); words=(M.add word.[n] (traverse (n+1) empty) M.empty)}
-        (* la lettre courante est dans le dictionnaire : modifier le dictionnaire correspondant à cette lettre *)
-        | {eow=b; words=dict} when Iter.exists (fun (c,tr) -> c = word.[n]) (M.to_iter dict) -> 
-              {eow = (b || (n=(String.length word) -1)); words=(M.remove word.[n] dict)};
-              {eow = (b || (n=(String.length word) -1)); words= (M.add word.[n] (traverse (n+1) empty) dict)}
-        (* la lettre courante n'est pas dans le dictionnaire : l'ajouter *)
-        | {eow=b; words=dict} -> {eow = b; words = (M.add word.[n] (traverse (n+1) empty) dict)}
-
-	  else empty
+      if M.mem word.[n] t.words then
+        let new_d = M.remove word.[n] t.words 
+        in
+          {eow=t.eow;words= (M.add word.[n] (traverse (n+1) (M.find word.[n] t.words)) new_d)}
+      else
+        {eow=t.eow;words= (M.add word.[n] (traverse (n+1) (M.find word.[n] t.words)) t.words)}
+        (* {eow=t.eow;words=(traverse (n+1) (M.add word.[n] empty (t.words)))} *)
+    else 
+      {eow=true;words=t.words}
   in traverse 0 lexicon
 
-(*
-  let rec traverse n lex =
-    if n < String.length word then
-      let t = ((List.nth 0 (to_rev_list (Iter.map (fun (c,j) -> if word.[n]=c then (c;j) else (c,empty)) (M.to_iter dict.words)))))
-      match t with
-      | t when is_empty t ->
-
-      | t -> traverse (n+1) t
-    else
-  in traverse 0 lexicon*)
 
 let rec to_iter { eow; words } =
-  failwith "Unimplemented"
+  failwith "Unimplemented" 
+  (*
+  match eow with
+  | false -> Iter.map (fun k i -> Iter.append (Iter.singleton k) (to_iter i)) (M.to_iter words)
+  | true -> M.singleton "k" *)
+  
 
 let letter_suffixes { eow; words } letter =
-  failwith "Unimplemented"
+  let rec traverse n t =
+    if M.mem letter t.words then
+      {eow=false;words=t.words}
+    else
+      empty
+  in traverse 0   { eow; words }
 
 let rec filter_min_length len { eow; words } =
-  failwith "Unimplemented"
+   failwith "Unimplemented" 
+  (*let mots = (Iter.filter (fun x -> if String.length(x) > len then true else false)(to_iter { eow; words })) in
+    let lex = ref empty in
+      Iter.map (fun x -> add x !lex) mots;
+  !lex*)
 
 let load_file f =
   let rec load_channel channel acc =
