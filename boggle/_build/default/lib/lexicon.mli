@@ -10,7 +10,7 @@ val empty : t
 val is_empty : t -> bool
 (** Est-ce qu'un lexique est vide ? *)
 
-val add : string -> t -> t
+val add : t -> string -> t
 (** [add word lexicon] ajoute le mot [word] au lexique [lexicon]. *)
 
 val to_iter : t -> string Iter.t

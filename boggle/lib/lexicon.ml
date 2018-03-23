@@ -23,10 +23,6 @@ let rec is_empty { eow; words } =
   (* failwith "Unimplemented" *)
   eow==false && M.for_all (fun k t -> is_empty t) words 
 
-
-let has_empty_word { eow; words } =
-  failwith "Unimplemented"
-
 (*  Iter.filter (fun x -> if x=true then true else false )(Iter.map (fun x -> is_empty { false; x }) M.to_iter words) *)
 
 
@@ -35,7 +31,7 @@ let has_empty_word { eow; words } =
   |(false,words) -> has_empty_word {words.eow; words}
   |(true,_)->false*)
 
-let add word lexicon =
+let add lexicon word =
   let rec traverse n t =
     if n < String.length word then
       if M.mem word.[n] t.words then
@@ -67,8 +63,13 @@ let letter_suffixes { eow; words } letter =
   in traverse 0   { eow; words }
 
 let rec filter_min_length len { eow; words } =
-   failwith "Unimplemented" 
-  (*let mots = (Iter.filter (fun x -> if String.length(x) > len then true else false)(to_iter { eow; words })) in
+  let mots = (Iter.filter (fun x -> if String.length(x) > len then true else false)(to_iter { eow; words })) in
+      Iter.fold add empty mots
+
+let has_empty_word { eow; words } =
+   (Iter.exists (fun x -> if String.length(x) = 0 then true else false)(to_iter { eow; words }))
+
+	(*let mots = (Iter.filter (fun x -> if String.length(x) > len then true else false)(to_iter { eow; words })) in
     let lex = ref empty in
       Iter.map (fun x -> add x !lex) mots;
   !lex*)
@@ -76,7 +77,7 @@ let rec filter_min_length len { eow; words } =
 let load_file f =
   let rec load_channel channel acc =
     match input_line channel with
-    | word -> load_channel channel (add word acc)
+    | word -> load_channel channel (add acc word)
     | exception End_of_file -> acc
   in
   match open_in f with
