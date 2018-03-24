@@ -32,10 +32,13 @@ let main () =
 	let a = Lexicon.add l "hugo" in
   let b = Lexicon.add a "wyborska" in
   let c = Lexicon.add b "wyborskal" in
+  let t = Lexicon.letter_suffixes c 'w' in
+  let t_s = Lexicon.to_iter t in
   (*if Lexicon.has_empty_word a then  print_string "il y a le mot vide\n" else print_string "il n'y a pas le mot vide";*)
 	let s = Lexicon.to_iter c in
   (*if Lexicon.is_empty a then print_string "vide\n" else print_string "non vide";*)
-	Iter.iter (fun x -> print_string(x^" ")) s;;
+	Iter.iter (fun x -> print_string(x^" ")) s;
+  Iter.iter (fun x -> print_string(x^" ")) t_s;;
   (*let d = Lexicon.filter_min_length 3 c in
   Iter.iter (fun x -> print_string(x^" ")) (Lexicon.to_iter d);;*)
 
