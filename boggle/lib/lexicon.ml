@@ -11,6 +11,8 @@ type t = {
   words : t M.t;
 }
 
+let iter_sur_mot = ref Iter.empty
+
 let empty =
   (* Cette valeur vous est donnée, vous n'avez pas besoin de l'écrire
      vous-même. *)
@@ -32,6 +34,7 @@ let rec is_empty { eow; words } =
   |(true,_)->false*)
 
 let add lexicon word =
+  iter_sur_mot :=(Iter.cons word (!iter_sur_mot));
   let rec traverse n t =
     if n < String.length word then
       if M.mem word.[n] t.words then
@@ -47,7 +50,7 @@ let add lexicon word =
 
 
 let rec to_iter { eow; words } =
-  failwith "Unimplemented" 
+  !iter_sur_mot
   (*
   match eow with
   | false -> Iter.map (fun k i -> Iter.append (Iter.singleton k) (to_iter i)) (M.to_iter words)
