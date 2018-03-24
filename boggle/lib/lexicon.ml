@@ -23,7 +23,7 @@ let empty =
 
 let rec is_empty { eow; words } =
   (* failwith "Unimplemented" *)
-  eow==false && M.for_all (fun k t -> is_empty t) words 
+  eow==false && M.for_all (fun k t -> is_empty t) words
 
 (*  Iter.filter (fun x -> if x=true then true else false )(Iter.map (fun x -> is_empty { false; x }) M.to_iter words) *)
 
@@ -38,13 +38,13 @@ let add lexicon word =
   let rec traverse n t =
     if n < String.length word then
       if M.mem word.[n] t.words then
-        let new_d = M.remove word.[n] t.words 
+        let new_d = M.remove word.[n] t.words
         in
           {eow=t.eow;words= (M.add word.[n] (traverse (n+1) (M.find word.[n] t.words)) new_d)}
       else
-        {eow=t.eow;words= (M.add word.[n] (traverse (n+1) (M.find word.[n] t.words)) t.words)}
+        {eow=t.eow;words= (M.add word.[n] (traverse (n+1) empty) (t.words))}
         (* {eow=t.eow;words=(traverse (n+1) (M.add word.[n] empty (t.words)))} *)
-    else 
+    else
       {eow=true;words=t.words}
   in traverse 0 lexicon
 
@@ -55,7 +55,7 @@ let rec to_iter { eow; words } =
   match eow with
   | false -> Iter.map (fun k i -> Iter.append (Iter.singleton k) (to_iter i)) (M.to_iter words)
   | true -> M.singleton "k" *)
-  
+
 
 let letter_suffixes { eow; words } letter =
   let rec traverse n t =

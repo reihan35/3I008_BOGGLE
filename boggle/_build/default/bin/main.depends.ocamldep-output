@@ -1,1 +1,1 @@
-bin/main.ml: Board Boggle Path
+bin/main.ml: Boggle Iter Lexicon
