@@ -58,12 +58,21 @@ let rec to_iter { eow; words } =
 
 
 let letter_suffixes { eow; words } letter =
-  let rec traverse n t =
-    if M.mem letter t.words then
-      {eow=false;words=t.words}
+  let rec traverse t =
+    if t.words != M.empty then (* dictionnaire non vide *)
+      if M.mem letter t.words then (* le dictionnaire contient la lettre *)
+        M.find letter t.words (* on retourne l'arbre qui correspond *)
+        (* {eow=false;words=t.words} *)
+      else 
+        (* on appelle traverse sur les arbres du dictionnaire et on récupère celui dont la clé est la lettre *)
+        let m = (M.map (traverse) t.words) in
+        if M.mem letter m then
+          M.find letter m 
+        else
+          empty
     else
       empty
-  in traverse 0   { eow; words }
+  in traverse { eow; words }
 
 let rec filter_min_length len { eow; words } =
   let mots = (Iter.filter (fun x -> if String.length(x) > len then true else false)(to_iter { eow; words })) in
