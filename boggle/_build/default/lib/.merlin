@@ -1,3 +1,0 @@
-B ../_build/default/lib/.boggle.objs
-FLG -open Boggle -w -40
-S .
