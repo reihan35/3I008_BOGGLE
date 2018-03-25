@@ -80,7 +80,7 @@ let letter_suffixes { eow; words } letter =
   in traverse { eow; words }
 
 let rec filter_min_length len { eow; words } =
-  let mots = (Iter.filter (fun x -> if String.length(x) > len then true else false)(to_iter { eow; words })) in
+  let mots = (Iter.filter (fun x -> if String.length(x) > len || String.length(x) = len then true else false)(to_iter { eow; words })) in
       Iter.fold add empty mots
 
 let has_empty_word { eow; words } =
