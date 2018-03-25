@@ -37,15 +37,16 @@ let main () =
   let t_s = Lexicon.to_iter t in*)
   
   
-  match open_in "hello" with
+  match open_in "dict/dico_fr_petit.txt" with
   | channel -> print_string "works"
-  | exception Sys_error _ -> print_string "does not work";
+  | exception Sys_error _ -> print_string "does not work";;
+  
 
-  let v = Lexicon.load_file "dico_fr_petit.txt" in 
+  let v = Lexicon.load_file "dict/dico_fr_petit.txt" in 
   match v with
   |Some a-> let o = Lexicon.to_iter a in
   			Iter.iter (fun x -> print_string(x^" ")) o
-  |None->print_string "problem";;
+  |None->print_string "problem";; 
   
 
 (*if Lexicon.has_empty_word c then print_string "il y a le mot vide\n" else print_string "il n'y a pas le mot vide";;*)
