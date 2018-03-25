@@ -67,13 +67,14 @@ let letter_suffixes { eow; words } letter =
       if M.mem letter t.words then (* le dictionnaire contient la lettre *)
         M.find letter t.words (* on retourne l'arbre qui correspond *)
         (* {eow=false;words=t.words} *)
-      else 
+      else
         (* on appelle traverse sur les arbres du dictionnaire et on récupère celui dont la clé est la lettre *)
-        let m = (M.map (traverse) t.words) in (* problème ici *)
-        if M.mem letter m then
-          M.find letter m 
-        else
+        let m = M.filter (fun k x -> x.words != M.empty) (M.map (fun x -> traverse x) t.words) in (* problème ici *)
+        if (M.is_empty m) then
           empty
+        else
+          let (k, x) = M.min_binding m
+        in x
     else
       empty
   in traverse { eow; words }
