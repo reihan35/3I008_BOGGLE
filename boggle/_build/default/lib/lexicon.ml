@@ -11,7 +11,7 @@ type t = {
   words : t M.t;
 }
 
-let iter_sur_mot = ref Iter.empty
+(* let iter_sur_mot = ref Iter.empty *)
 
 let empty =
   (* Cette valeur vous est donnée, vous n'avez pas besoin de l'écrire
@@ -25,16 +25,9 @@ let rec is_empty { eow; words } =
   (* failwith "Unimplemented" *)
   eow==false && M.for_all (fun k t -> is_empty t) words
 
-(*  Iter.filter (fun x -> if x=true then true else false )(Iter.map (fun x -> is_empty { false; x }) M.to_iter words) *)
-
-
-  (*match (eow,words) with
-  |(false,words) when is_empty {eow; words} = true -> true
-  |(false,words) -> has_empty_word {words.eow; words}
-  |(true,_)->false*)
 
 let add lexicon word =
-  iter_sur_mot :=(Iter.cons word (!iter_sur_mot));
+  (* iter_sur_mot :=(Iter.cons word (!iter_sur_mot)); *)
   let rec traverse n t =
     if n < String.length word then
       if M.mem word.[n] t.words then
@@ -50,11 +43,22 @@ let add lexicon word =
 
 
 let rec to_iter { eow; words } =
-  !iter_sur_mot
-  (*
+  match words with
+  | w when w = M.empty -> 
+      if eow then 
+        Iter.singleton ""
+      else
+        Iter.empty 
+  | w when eow -> Iter.cons "" (Iter.flat_map (fun (k,t) -> Iter.map (fun s -> (String.make 1 k) ^ s) (to_iter t)) (M.to_iter w) )
+  | w ->  Iter.flat_map (fun (k,t) -> Iter.map (fun s -> (String.make 1 k) ^ s) (to_iter t)) (M.to_iter w) 
+
+
+  (* !iter_sur_mot
+  
   match eow with
   | false -> Iter.map (fun k i -> Iter.append (Iter.singleton k) (to_iter i)) (M.to_iter words)
   | true -> M.singleton "k" *)
+
 
 
 let letter_suffixes { eow; words } letter =
@@ -65,7 +69,7 @@ let letter_suffixes { eow; words } letter =
         (* {eow=false;words=t.words} *)
       else 
         (* on appelle traverse sur les arbres du dictionnaire et on récupère celui dont la clé est la lettre *)
-        let m = (M.map (traverse) t.words) in
+        let m = (M.map (traverse) t.words) in (* problème ici *)
         if M.mem letter m then
           M.find letter m 
         else

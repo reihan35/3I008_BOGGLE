@@ -31,7 +31,8 @@ let main () =
 	(*if Lexicon.is_empty l then print_string "vide\n" else print_string "non vide";*)
 	let a = Lexicon.add l "hugo" in
   let b = Lexicon.add a "wyborska" in
-  let c = Lexicon.add b "wyborskal" in
+  let d = Lexicon.add b "wyb" in 
+  let c = Lexicon.add d "wyborskal" in
   let t = Lexicon.letter_suffixes c 'w' in
   let t_s = Lexicon.to_iter t in
   (*if Lexicon.has_empty_word a then  print_string "il y a le mot vide\n" else print_string "il n'y a pas le mot vide";*)
