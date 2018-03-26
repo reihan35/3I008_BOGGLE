@@ -13,8 +13,8 @@ let main () =
 *)
 
 let main () =
-  print_string "***********************************************************************************\n";
-  print_string "Welcome to the Boggle Game solver !! Here's a Boggle generated for you ! try to solve it by your own\n";
+   print_string "***********************************************************************************\n";
+  print_string "Welcome to the Boggle Game !! Here's a Boggle generated for you ! Try to solve it by your own\n";
   let random_letter_fr = RandomLetter.picker RandomLetter.Distribution.fr in
   let board = Board.make 4 random_letter_fr
   in
@@ -27,16 +27,16 @@ let main () =
   match dict with
   |None->print_string "problem";
   |Some d->
-    Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d));;
-
-	(*let board = Board.from_string "abcd" in
+    Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d));; 
+(*
+	let board = Board.from_string "abcd" in
     match board with
     | None -> print_string("Désolées pas carré")
     | Some(t) -> Board.print t;
                  let p = Path.add_tile t Path.empty (0,0) in
                  match p with
                   |Some a->print_string (Path.to_string t a);
-                  |None->print_string( Path.to_string t Path.empty);;*)
+                  |None->print_string( Path.to_string t Path.empty);; *)
 
 	(*let l = Lexicon.empty in
 	if Lexicon.is_empty l then print_string "vide\n" else print_string "non vide";
@@ -47,8 +47,8 @@ let main () =
   let t = Lexicon.letter_suffixes c 'y' in
   let t_s = Lexicon.to_iter t in*)
 
-
-  (*match open_in "dict/dico_fr_petit.txt" with
+(*
+  match open_in "dict/dico_fr_petit.txt" with
   | channel -> print_string "works"
   | exception Sys_error _ -> print_string "does not work";;
 
@@ -60,9 +60,10 @@ let main () =
         let e = Lexicon.filter_min_length 16 a in
         Iter.iter (fun x -> print_string(x^" ")) (Lexicon.to_iter e);
         print_string "\n";
+        
         let z = Lexicon.letter_suffixes a 'w' in
         print_string "voici la liste des mots qui start par w sans le w ! \n";
-        Iter.iter (fun x -> print_string(x^" ")) (Lexicon.to_iter z);
+        Iter.iter (fun x -> print_string(x^" ")) (Lexicon.to_iter z); 
   |None->print_string "problem";;*)
 
 
