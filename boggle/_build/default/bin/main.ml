@@ -13,10 +13,21 @@ let main () =
 *)
 
 let main () =
-
-  (*let random_letter_fr = RandomLetter.picker RandomLetter.Distribution.fr in
+  print_string "***********************************************************************************\n";
+  print_string "Welcome to the Boggle Game solver !! Here's a Boggle generated for you ! try to solve it by your own\n";
+  let random_letter_fr = RandomLetter.picker RandomLetter.Distribution.fr in
   let board = Board.make 4 random_letter_fr
-  in Board.print board;; *)
+  in
+  Board.print board;
+  print_string "\n";
+  print_string "\nOr tap enter to see the solutions if you are lazy !\n";
+  read_line();
+  print_string "Here's your Boggle's solutions :\n";
+  let dict = Lexicon.load_file "dict/dico_fr.txt" in
+  match dict with
+  |None->print_string "problem";
+  |Some d->
+    Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d));;
 
 	(*let board = Board.from_string "abcd" in
     match board with
@@ -37,7 +48,7 @@ let main () =
   let t_s = Lexicon.to_iter t in*)
 
 
-  match open_in "dict/dico_fr_petit.txt" with
+  (*match open_in "dict/dico_fr_petit.txt" with
   | channel -> print_string "works"
   | exception Sys_error _ -> print_string "does not work";;
 
@@ -52,7 +63,7 @@ let main () =
         let z = Lexicon.letter_suffixes a 'w' in
         print_string "voici la liste des mots qui start par w sans le w ! \n";
         Iter.iter (fun x -> print_string(x^" ")) (Lexicon.to_iter z);
-  |None->print_string "problem";;
+  |None->print_string "problem";;*)
 
 
 (*if Lexicon.has_empty_word c then print_string "il y a le mot vide\n" else print_string "il n'y a pas le mot vide";;*)

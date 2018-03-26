@@ -15,5 +15,3 @@ let rec to_string board path =
 
 let iter_to_words board all_paths =
   	Iter.map (fun x -> to_string board x) all_paths
-
-
