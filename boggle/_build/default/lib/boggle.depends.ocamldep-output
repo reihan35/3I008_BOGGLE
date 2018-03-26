@@ -4,4 +4,4 @@ lib/iter.ml:
 lib/lexicon.ml: Char Iter Map String
 lib/path.ml: Board Iter List String
 lib/randomLetter.ml: Array Char Random
-lib/solver.ml:
+lib/solver.ml: Board Iter Lexicon Path
