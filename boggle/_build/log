@@ -1,8 +1,8 @@
-# jbuilder build @install
+# jbuilder exec boggle
 # OCAMLPARAM: unset
 # Workspace root: /home/fati/UPMC/L3/3I008_BOGGLE/boggle
-$ /home/fati/.opam/4.06.0/bin/ocamlfind printconf path > /tmp/jbuildee1da1.output
-$ /home/fati/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuild80096e.output
+$ /home/fati/.opam/4.06.0/bin/ocamlfind printconf path > /tmp/jbuild2d018a.output
+$ /home/fati/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuild8059d8.output
 # Jbuilder context:
 #  ((name default)
 #   (kind default)
@@ -80,11 +80,3 @@ $ /home/fati/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuild80096e.output
 #   (which
 #    ((ocamlc (/home/fati/.opam/4.06.0/bin/ocamlc.opt))
 #     (ocamlfind (/home/fati/.opam/4.06.0/bin/ocamlfind)))))
-$ (cd _build/default && /home/fati/.opam/4.06.0/bin/ocamldep.opt -modules lib/board.ml -impl lib/boggle.ml-gen lib/iter.ml lib/lexicon.ml lib/path.ml lib/randomLetter.ml lib/solver.ml) > _build/default/lib/boggle.depends.ocamldep-output
-$ (cd _build/default && /home/fati/.opam/4.06.0/bin/ocamlc.opt -w -40 -g -bin-annot -no-alias-deps -I lib -open Boggle -o lib/boggle__Solver.cmo -c -impl lib/solver.ml)
-$ (cd _build/default && /home/fati/.opam/4.06.0/bin/ocamlc.opt -w -40 -g -a -o lib/boggle.cma lib/boggle.cmo lib/boggle__Iter.cmo lib/boggle__Board.cmo lib/boggle__Lexicon.cmo lib/boggle__Path.cmo lib/boggle__RandomLetter.cmo lib/boggle__Solver.cmo)
-$ (cd _build/default && /home/fati/.opam/4.06.0/bin/ocamlopt.opt -w -40 -g -no-alias-deps -I lib -open Boggle -o lib/boggle__Solver.cmx -c -impl lib/solver.ml)
-$ (cd _build/default && /home/fati/.opam/4.06.0/bin/ocamlopt.opt -w -40 -g -a -o lib/boggle.cmxa lib/boggle.cmx lib/boggle__Iter.cmx lib/boggle__Board.cmx lib/boggle__Lexicon.cmx lib/boggle__Path.cmx lib/boggle__RandomLetter.cmx lib/boggle__Solver.cmx)
-$ (cd _build/default && /home/fati/.opam/4.06.0/bin/ocamlopt.opt -w -40 -g -I lib -intf-suffix .ml -no-alias-deps -I bin -o bin/main.cmx -c -impl bin/main.ml)
-$ (cd _build/default && /home/fati/.opam/4.06.0/bin/ocamlopt.opt -w -40 -g -shared -linkall -I lib -o lib/boggle.cmxs lib/boggle.cmxa)
-$ (cd _build/default && /home/fati/.opam/4.06.0/bin/ocamlopt.opt -w -40 -g -o bin/main.exe -I lib lib/boggle.cmxa bin/main.cmx)
