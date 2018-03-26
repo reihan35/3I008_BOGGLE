@@ -8,9 +8,15 @@ let rec backtrack board lexicon path (i, j) =
              match Lexicon.is_empty lex_prime with
              |true->Iter.empty
              |false->
+                 let solutions_via_voisins = Iter.flat_map (fun x -> backtrack board lex_prime path_prime x) (Board.neighbours board (i, j)) in 
                  match Lexicon.has_empty_word lex_prime with
-                 |true->Iter.append (Iter.singleton path_prime) (Iter.flat_map (fun x -> backtrack board lex_prime path_prime x) (Board.neighbours board (i, j)));
-                 |false->Iter.append (Iter.empty)  (Iter.flat_map (fun x -> backtrack board lex_prime path_prime x) (Board.neighbours board (i, j)));;
+                 |true-> if Iter.exists (fun x -> x = path_prime) solutions_via_voisins then 
+                            solutions_via_voisins 
+                        else 
+                            Iter.append (Iter.singleton path_prime) solutions_via_voisins   
+                (* Iter.append (Iter.singleton path_prime) (Iter.flat_map (fun x -> backtrack board lex_prime path_prime x) (Board.neighbours board (i, j))); *)
+                 |false-> solutions_via_voisins;;
+                 (* Iter.append (Iter.empty)  (Iter.flat_map (fun x -> backtrack board lex_prime path_prime x) (Board.neighbours board (i, j)));; *)
 
 let find_all_paths board lexicon =
   (*failwith "unimplemented"*)
