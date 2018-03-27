@@ -7,19 +7,21 @@ let dim board =
   Array.length board;;
 
 let all_positions board =
-	let n = dim board
-	in
-	Iter.product (Iter.range 0 (n-1)) (Iter.range 0 (n-1))
+  let n = dim board
+  in
+  Iter.product (Iter.range 0 (n-1)) (Iter.range 0 (n-1))
 
 let are_neighbours board (i, j) (i', j') =
-	match (i',j') with
-		| (i',j') when i'=(i+1) && j'=j -> true
-		| (i', j') when i'=i && j'=(j+1) -> true
-		| (i', j') when i' = (i+1) && j' = (j+1) -> true
-		| (i',j') when i'=(i-1) && j'=j -> true
-		| (i', j') when i'=i && j'=(j-1) -> true
-		| (i', j') when i' = (i-1) && j' = (j-1) -> true
-		| (i', j') -> false
+  match (i',j') with
+    | (i',j') when i'=(i+1) && j'=j -> true
+    | (i', j') when i'=i && j'=(j+1) -> true
+    | (i', j') when i' = (i+1) && j' = (j+1) -> true
+    | (i', j') when i' = (i+1) && j' = (j-1) -> true
+    | (i', j') when i' = (i-1) && j' = (j+1) -> true
+    | (i',j') when i'=(i-1) && j'=j -> true
+    | (i', j') when i'=i && j'=(j-1) -> true
+    | (i', j') when i' = (i-1) && j' = (j-1) -> true
+    | (i', j') -> false
 
 let is_valid_pos board (i, j) =
   let n = dim board in
@@ -48,24 +50,25 @@ let from_string s =
     let dim = (int_of_float(sqrt (float_of_int n))) in
     let cpt = ref 0 in
       let board = ref (Array.make_matrix dim dim 'a') in
-  		  for i=0 to dim-1 do
-  			  for j=0 to dim-1 do
-  				  (!board).(i).(j)<-s.[!cpt];
+        for i=0 to dim-1 do
+          for j=0 to dim-1 do
+            (!board).(i).(j)<-s.[!cpt];
             cpt := !cpt + 1
-  			  done
-  		  done;
-  	  Some(!board)
+          done
+        done;
+      Some(!board)
   |n ->None
 
 let print board =
   let cpt= ref 0 in
-	Iter.iter (fun x ->
-					  if !cpt = 0 then print_string "{[";
-					  print_char x;
+  Iter.iter (fun x ->
+            if !cpt = 0 then print_string "{[";
+            print_char x;
+            print_string " ";
                       incr cpt;
                       if !cpt mod (dim board)=0 && !cpt<dim board*dim board then
-						print_char '\n';
-					  if !cpt== dim board*dim board then
-						  print_string "]}" ;
-                      		)
-		(Iter.map (fun (i,j) -> (get_letter board i j)) (all_positions board));;
+            print_char '\n';
+            if !cpt== dim board*dim board then
+              print_string "]}" ;
+                          )
+    (Iter.map (fun (i,j) -> (get_letter board i j)) (all_positions board));;
