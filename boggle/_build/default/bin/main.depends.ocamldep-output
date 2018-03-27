@@ -1,1 +1,1 @@
-bin/main.ml: Board Boggle Iter Lexicon Path RandomLetter Solver
+bin/main.ml: Board Boggle Path

@@ -12,13 +12,15 @@ let main () =
   print_endline "Je ne sais pas quoi faire... Programmez moi !"
 *)
 
-let main () =
-  print_string "***********************************************************************************\n";
+let main () =(*"eibnrefclmmuerkpseeniagecewieiehusisevelumiieurerllcommssiuseelq"*)
+  (*print_string "***********************************************************************************\n";
   print_string "Welcome to the Boggle Game !! Here's a Boggle generated for you ! Try to solve it by your own\n";
   let random_letter_fr = RandomLetter.picker RandomLetter.Distribution.fr in
-  let board = Board.make 4 random_letter_fr
+  let t = Board.from_string "aryrbbexx"
   in
-  Board.print board;
+  match t with
+  | None -> print_string("Désolées pas carré")
+  | Some(board) ->Board.print board;
   print_string "\n";
   print_string "\nOr tap enter to see the solutions if you are lazy !\n";
   read_line();
@@ -27,16 +29,25 @@ let main () =
   match dict with
   |None->print_string "problem";
   |Some d->
-    Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d));;
-
-	(*let board = Board.from_string "abcd" in
+  Iter.iter (fun x -> print_string ((Path.to_string board x)^" ")) (Solver.backtrack board d Path.empty (0,2));;
+(*     Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d));; *)
+*)
+	let board = Board.from_string "abcd" in
     match board with
     | None -> print_string("Désolées pas carré")
     | Some(t) -> Board.print t;
                  let p = Path.add_tile t Path.empty (0,0) in
-                 match p with
-                  |Some a->print_string (Path.to_string t a);
-                  |None->print_string( Path.to_string t Path.empty);;*)
+                         match p with
+                           |None->print_string("erreur")
+                           |Some(c)->let g = Path.add_tile t c (0,1) in
+                                     match g with
+                                     |None -> print_string("problem");
+                                     |Some(b)->print_string (Path.to_string t b);;
+                                             (*let h = Path.add_tile t b (0,2) in
+                                               match h with
+                                              |Some(hi) -> print_string (Path.to_string t hi);
+                                              |None -> print_string("problem");;*)
+
 
 	(*let l = Lexicon.empty in
 	if Lexicon.is_empty l then print_string "vide\n" else print_string "non vide";

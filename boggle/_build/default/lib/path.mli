@@ -14,6 +14,8 @@ type t
 val empty : t
 (** Le chemin vide (qui ne contient aucune case). *)
 
+val start : t
+
 val add_tile : Board.t -> t -> (int * int) -> t option
 (** Ajoute une case de la grille, donnée par ses coordonnées (numéro
     de ligne, numéro de colonne), à un chemin. Renvoie [None] si le

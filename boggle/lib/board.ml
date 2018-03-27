@@ -16,6 +16,8 @@ let are_neighbours board (i, j) (i', j') =
 		| (i',j') when i'=(i+1) && j'=j -> true
 		| (i', j') when i'=i && j'=(j+1) -> true
 		| (i', j') when i' = (i+1) && j' = (j+1) -> true
+    | (i', j') when i' = (i+1) && j' = (j-1) -> true
+    | (i', j') when i' = (i-1) && j' = (j+1) -> true
 		| (i',j') when i'=(i-1) && j'=j -> true
 		| (i', j') when i'=i && j'=(j-1) -> true
 		| (i', j') when i' = (i-1) && j' = (j-1) -> true
@@ -62,6 +64,7 @@ let print board =
 	Iter.iter (fun x ->
 					  if !cpt = 0 then print_string "{[";
 					  print_char x;
+            print_string " ";
                       incr cpt;
                       if !cpt mod (dim board)=0 && !cpt<dim board*dim board then
 						print_char '\n';
