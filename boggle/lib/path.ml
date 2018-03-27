@@ -16,17 +16,20 @@ let add_tile board path (i, j) =
 *)
 
 let add_tile board path (i, j) = 
-	if List.length path > 1 then
+	if List.length path >= 1 then
 		if (List.mem (i,j) path==false) && (Board.is_valid_pos board (i,j)) && (Board.are_neighbours board (List.nth path ((List.length path)-1)) (i, j)) then
-			None
+			let rec aux p =
+				match p with
+				| [] -> (i, j)::[]
+				| (a, b)::q -> (a, b) :: (aux q)
+			in Some (aux path)
 		else
-			Some ((i,j)::[])
+			None
 	else
-		let rec aux p =
-			match p with
-			| (a, b)::q -> (a, b) :: (aux q)
-			| [] -> (i, j)::[]
-	in Some (aux path)
+		if (Board.is_valid_pos board (i,j)) then
+			Some((i,j)::[])
+		else 
+			None
 
 
 let rec to_string board path =
