@@ -48,7 +48,6 @@ val print : t -> unit
     affichées consécutivement. On affichera un caractère saut de ligne
     après la dernière ligne. On pourra, pour simplifier le code,
     afficher une espace après le caractère de chaque ligne.
-
     Voici un exemple d'affichage d'une grille :
 {[a t r s
 e u l c

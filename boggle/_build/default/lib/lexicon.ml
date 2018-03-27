@@ -38,10 +38,25 @@ let add lexicon word =
         {eow=t.eow;words= (M.add word.[n] (traverse (n+1) empty) (t.words))}
         (* {eow=t.eow;words=(traverse (n+1) (M.add word.[n] empty (t.words)))} *)
     else
-      {eow=true;words=t.words}
+      {eow=true;words=(M.add " ".[0] {eow=false;words=M.empty} (t.words))}
   in traverse 0 lexicon
 
+(*
+let add lexicon word =
+  let rec traverse n t =
+    if n < (String.length word) then
+      if M.mem word.[n] t.words then
+        let new_d = M.remove word.[n] t.words
+        in
+          {eow=t.eow;words= (M.add word.[n] (traverse (n+1) (M.find word.[n] t.words)) new_d)}
+      else
+        {eow=t.eow;words= (M.add word.[n] (traverse (n+1) empty) (t.words))}
+        (* {eow=t.eow;words=(traverse (n+1) (M.add word.[n] empty (t.words)))} *)
+    else
+      {eow=true;words=(M.add (String.get "" 0) {eow=true;words=M.empty} t.words)}
+  in traverse 0 lexicon *)
 
+(*
 let rec to_iter { eow; words } =
   match words with
   | w when w = M.empty -> 
@@ -51,14 +66,12 @@ let rec to_iter { eow; words } =
         Iter.empty 
   | w when eow -> Iter.cons "" (Iter.flat_map (fun (k,t) -> Iter.map (fun s -> (String.make 1 k) ^ s) (to_iter t)) (M.to_iter w) )
   | w ->  Iter.flat_map (fun (k,t) -> Iter.map (fun s -> (String.make 1 k) ^ s) (to_iter t)) (M.to_iter w) 
-
-
-  (* !iter_sur_mot
-  
-  match eow with
-  | false -> Iter.map (fun k i -> Iter.append (Iter.singleton k) (to_iter i)) (M.to_iter words)
-  | true -> M.singleton "k" *)
-
+*)
+let rec to_iter { eow; words } =
+  match words with
+  | w when w = M.empty -> Iter.singleton " "
+  | w when eow -> Iter.cons "" (Iter.flat_map (fun (k,t) -> Iter.map (fun s -> (String.make 1 k) ^ s) (to_iter t)) (M.to_iter w) )
+  | w ->  Iter.flat_map (fun (k,t) -> Iter.map (fun s -> (String.make 1 k) ^ s) (to_iter t)) (M.to_iter w) 
 
 
 let letter_suffixes { eow; words } letter =
@@ -69,7 +82,7 @@ let letter_suffixes { eow; words } letter =
         (* {eow=false;words=t.words} *)
       else
         (* on appelle traverse sur les arbres du dictionnaire et on récupère celui dont la clé est la lettre *)
-        let m = M.filter (fun k x -> x.words != M.empty) (M.map (fun x -> traverse x) t.words) in (* problème ici *)
+        let m = M.filter (fun k x -> x.words != M.empty) (M.map (fun x -> traverse x) t.words) in 
         if (M.is_empty m) then
           empty
         else
@@ -77,14 +90,17 @@ let letter_suffixes { eow; words } letter =
         in x
     else
       empty
-  in traverse { eow; words }
+  in traverse { eow; words } 
 
 let rec filter_min_length len { eow; words } =
   let mots = (Iter.filter (fun x -> if String.length(x) > len || String.length(x) = len then true else false)(to_iter { eow; words })) in
       Iter.fold add empty mots
 
+(* let has_empty_word { eow; words } =
+   (Iter.exists (fun x -> if String.length(x) = 0 then true else false)(to_iter { eow; words })) *)
+
 let has_empty_word { eow; words } =
-   (Iter.exists (fun x -> if String.length(x) = 0 then true else false)(to_iter { eow; words }))
+   (Iter.exists (fun x -> if x = " " then true else false)(to_iter { eow; words })) 
 
 	(*let mots = (Iter.filter (fun x -> if String.length(x) > len then true else false)(to_iter { eow; words })) in
     let lex = ref empty in

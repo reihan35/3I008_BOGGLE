@@ -1,9 +1,7 @@
 (** Chemins sur une grille. Un chemin est une séquence de cases
     valides de la grille qui respecte les deux invariants suivants :
-
     - Deux cases consécutives dans le chemin sont voisines sur la grille.
     - Toute case de la grille est présente au plus une fois dans le chemin.
-
     Tout chemin construit à l'aide des fonctions fournit dans ce
     module garantit de respecter ces deux invariants.
 *)
@@ -13,6 +11,10 @@ type t
 
 val empty : t
 (** Le chemin vide (qui ne contient aucune case). *)
+
+val start : t
+
+val rev : t -> t
 
 val add_tile : Board.t -> t -> (int * int) -> t option
 (** Ajoute une case de la grille, donnée par ses coordonnées (numéro
