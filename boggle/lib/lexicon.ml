@@ -99,8 +99,12 @@ let rec filter_min_length len { eow; words } =
 (* let has_empty_word { eow; words } =
    (Iter.exists (fun x -> if String.length(x) = 0 then true else false)(to_iter { eow; words })) *)
 
+(*
 let has_empty_word { eow; words } =
-   (Iter.exists (fun x -> if x = " " then true else false)(to_iter { eow; words })) 
+   (Iter.exists (fun x -> if x = " " then true else false)(to_iter { eow; words })) *)
+
+let has_empty_word { eow; words } =
+  M.mem " ".[0] words
 
 	(*let mots = (Iter.filter (fun x -> if String.length(x) > len then true else false)(to_iter { eow; words })) in
     let lex = ref empty in
