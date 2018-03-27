@@ -16,6 +16,8 @@ val empty : t
 
 val start : t
 
+val rev : t -> t
+
 val add_tile : Board.t -> t -> (int * int) -> t option
 (** Ajoute une case de la grille, donnée par ses coordonnées (numéro
     de ligne, numéro de colonne), à un chemin. Renvoie [None] si le

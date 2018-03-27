@@ -13,10 +13,10 @@ let main () =
 *)
 
 let main () =(*"eibnrefclmmuerkpseeniagecewieiehusisevelumiieurerllcommssiuseelq"*)
-  (*print_string "***********************************************************************************\n";
+  print_string "***********************************************************************************\n";
   print_string "Welcome to the Boggle Game !! Here's a Boggle generated for you ! Try to solve it by your own\n";
   let random_letter_fr = RandomLetter.picker RandomLetter.Distribution.fr in
-  let t = Board.from_string "aryrbbexx"
+  let t = Board.from_string "rayrbbexx"
   in
   match t with
   | None -> print_string("Désolées pas carré")
@@ -29,10 +29,10 @@ let main () =(*"eibnrefclmmuerkpseeniagecewieiehusisevelumiieurerllcommssiuseelq
   match dict with
   |None->print_string "problem";
   |Some d->
-  Iter.iter (fun x -> print_string ((Path.to_string board x)^" ")) (Solver.backtrack board d Path.empty (0,2));;
-(*     Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d));; *)
-*)
-	let board = Board.from_string "abcd" in
+  Iter.iter (fun x -> print_string ((Path.to_string board x)^" ")) (Solver.backtrack board d Path.empty (0,0));;
+(* Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d));; *)
+
+	(*let board = Board.from_string "abcd" in
     match board with
     | None -> print_string("Désolées pas carré")
     | Some(t) -> Board.print t;
@@ -42,10 +42,10 @@ let main () =(*"eibnrefclmmuerkpseeniagecewieiehusisevelumiieurerllcommssiuseelq
                            |Some(c)->let g = Path.add_tile t c (0,1) in
                                      match g with
                                      |None -> print_string("problem");
-                                     |Some(b)->print_string (Path.to_string t b);;
-                                             (*let h = Path.add_tile t b (0,2) in
+                                     |Some(b)->
+                                             let h = Path.add_tile t b (1,0) in
                                                match h with
-                                              |Some(hi) -> print_string (Path.to_string t hi);
+                                              |Some(hi) -> print_string (Path.to_string t (Path.rev hi));
                                               |None -> print_string("problem");;*)
 
 
