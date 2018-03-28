@@ -31,14 +31,23 @@ let main () =(*"eibnrefclmmuerkpseeniagecewieiehusisevelumiieurerllcommssiuseelq
 (*  if Lexicon.has_empty_word d then print_string "il y a le mot vide\n" else print_string "il n'y a pas le mot vide";; *)
 
 (*   Iter.iter (fun x -> print_string ((Path.to_string board x)^"")) (Solver.backtrack board d Path.empty (0,3));; *)
-let it_mots = Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d)) in
-  let list_mots = List.sort_uniq (fun a b -> if String.length a < String.length b then -1 else if String.length a > String.length b then 1 else 0) (Iter.to_rev_list (Path.iter_to_words board (Solver.find_all_paths board d))) in
+(*   let it_mots = Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d)) in *)
+  let my_compare x y=
+    if String.length x > String.length y then -1
+    else
+    if String.length x < String.length y then 1
+    else
+     String.compare x y;
+    in
 
+  let list_mots = List.sort_uniq my_compare (Iter.to_rev_list (Path.iter_to_words board (Solver.find_all_paths board d))) in
+  let list_f = List.map (fun x -> match x with
+                                  |x when String.length x > 3 -> x) list_mots in
   let rec parcours_liste l =
 	match l with
 	| [] -> print_string("\n")
 	| t::q -> print_string(t ^ " "); parcours_liste q
-  in parcours_liste list_mots;;
+  in parcours_liste list_f;;
 
   (*let board = Board.from_string "abcd" in
     match board with
