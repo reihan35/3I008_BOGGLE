@@ -1,23 +1,23 @@
-# jbuilder exec boggle
+# jbuilder exec boggle hugowyborskachristianmarwancolonelfelixtaquinchampionelliotghanillonjerrytomcharliewednesdayoooshhhh
 # OCAMLPARAM: unset
-# Workspace root: /home/fati/3I008_BOGGLE/boggle
-$ /home/fati/.opam/4.06.0/bin/ocamlfind printconf path > /tmp/jbuildd5d255.output
-$ /home/fati/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuilda2453f.output
+# Workspace root: /users/nfs/Etu2/3535002/3I008_BOGGLE/boggle
+$ /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuild83e258.output
+$ /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlfind printconf path > /tmp/jbuild736c25.output
 # Jbuilder context:
 #  ((name default)
 #   (kind default)
 #   (merlin true)
 #   (for_host ())
 #   (build_dir _build/default)
-#   (toplevel_path (/home/fati/.opam/4.06.0/lib/toplevel))
-#   (ocaml_bin /home/fati/.opam/4.06.0/bin)
-#   (ocaml /home/fati/.opam/4.06.0/bin/ocaml)
-#   (ocamlc /home/fati/.opam/4.06.0/bin/ocamlc.opt)
-#   (ocamlopt (/home/fati/.opam/4.06.0/bin/ocamlopt.opt))
-#   (ocamldep /home/fati/.opam/4.06.0/bin/ocamldep.opt)
-#   (ocamlmklib /home/fati/.opam/4.06.0/bin/ocamlmklib.opt)
+#   (toplevel_path (/users/Enseignants/suzanne/.opam/4.06.0/lib/toplevel))
+#   (ocaml_bin /users/Enseignants/suzanne/.opam/4.06.0/bin)
+#   (ocaml /users/Enseignants/suzanne/.opam/4.06.0/bin/ocaml)
+#   (ocamlc /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlc.opt)
+#   (ocamlopt (/users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlopt.opt))
+#   (ocamldep /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamldep.opt)
+#   (ocamlmklib /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlmklib.opt)
 #   (env ())
-#   (findlib_path (/home/fati/.opam/4.06.0/lib))
+#   (findlib_path (/users/Enseignants/suzanne/.opam/4.06.0/lib))
 #   (arch_sixtyfour true)
 #   (natdynlink_supported true)
 #   (opam_vars ())
@@ -29,8 +29,8 @@ $ /home/fati/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuilda2453f.output
 #     (ast_impl_magic_number Caml1999M022)
 #     (ast_intf_magic_number Caml1999N022)
 #     (bytecomp_c_compiler
-#      "gcc -O2 -fno-strict-aliasing -fwrapv -fPIC -D_FILE_OFFSET_BITS=64 -D_REENTRANT")
-#     (bytecomp_c_libraries "-lm  -ldl  -lpthread                  ")
+#      gcc -std=gnu99 -O2 -fno-strict-aliasing -fwrapv -fno-builtin-memcmp -fPIC -D_FILE_OFFSET_BITS=64 -D_REENTRANT)
+#     (bytecomp_c_libraries -lm  -ldl -lcurses -lpthread                  )
 #     (c_compiler gcc)
 #     (cc_profile -pg)
 #     (ccomp_type cc)
@@ -55,21 +55,24 @@ $ /home/fati/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuilda2453f.output
 #     (int_size 63)
 #     (model default)
 #     (native_c_compiler
-#      "gcc -O2 -fno-strict-aliasing -fwrapv -D_FILE_OFFSET_BITS=64 -D_REENTRANT")
-#     (native_c_libraries "-lm  -ldl")
-#     (native_pack_linker "ld -r -o ")
-#     (ocamlc_cflags "-O2 -fno-strict-aliasing -fwrapv -fPIC")
-#     (ocamlc_cppflags "-D_FILE_OFFSET_BITS=64 -D_REENTRANT")
-#     (ocamlopt_cflags "-O2 -fno-strict-aliasing -fwrapv")
-#     (ocamlopt_cppflags "-D_FILE_OFFSET_BITS=64 -D_REENTRANT")
+#      gcc -std=gnu99 -O2 -fno-strict-aliasing -fwrapv -fno-builtin-memcmp -D_FILE_OFFSET_BITS=64 -D_REENTRANT)
+#     (native_c_libraries -lm  -ldl)
+#     (native_pack_linker ld -r -o )
+#     (ocamlc_cflags
+#      -std=gnu99 -O2 -fno-strict-aliasing -fwrapv -fno-builtin-memcmp -fPIC)
+#     (ocamlc_cppflags -D_FILE_OFFSET_BITS=64 -D_REENTRANT)
+#     (ocamlopt_cflags
+#      -std=gnu99 -O2 -fno-strict-aliasing -fwrapv -fno-builtin-memcmp)
+#     (ocamlopt_cppflags -D_FILE_OFFSET_BITS=64 -D_REENTRANT)
 #     (os_type Unix)
 #     (profiling true)
 #     (ranlib ranlib)
 #     (safe_string false)
 #     (spacetime false)
-#     (standard_library /home/fati/.opam/4.06.0/lib/ocaml)
-#     (standard_library_default /home/fati/.opam/4.06.0/lib/ocaml)
-#     (standard_runtime /home/fati/.opam/4.06.0/bin/ocamlrun)
+#     (standard_library /users/Enseignants/suzanne/.opam/4.06.0/lib/ocaml)
+#     (standard_library_default
+#      /users/Enseignants/suzanne/.opam/4.06.0/lib/ocaml)
+#     (standard_runtime /users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlrun)
 #     (system linux)
 #     (systhread_supported true)
 #     (target x86_64-unknown-linux-gnu)
@@ -78,5 +81,7 @@ $ /home/fati/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuilda2453f.output
 #     (with_frame_pointers false)
 #     (word_size 64)))
 #   (which
-#    ((ocamlc (/home/fati/.opam/4.06.0/bin/ocamlc.opt))
-#     (ocamlfind (/home/fati/.opam/4.06.0/bin/ocamlfind)))))
+#    ((ocaml (/users/Enseignants/suzanne/.opam/4.06.0/bin/ocaml))
+#     (ocamlc (/users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlc.opt))
+#     (ocamlfind (/users/Enseignants/suzanne/.opam/4.06.0/bin/ocamlfind)))))
+# Workspace root: /users/nfs/Etu2/3535002/3I008_BOGGLE/boggle
