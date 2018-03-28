@@ -1,0 +1,6 @@
+lib/board.mli: Iter
+lib/iter.mli:
+lib/lexicon.mli: Iter
+lib/path.mli: Board Iter
+lib/randomLetter.mli:
+lib/solver.mli: Board Iter Lexicon Path

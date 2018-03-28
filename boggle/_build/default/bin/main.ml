@@ -16,11 +16,9 @@ let main () =(*"eibnrefclmmuerkpseeniagecewieiehusisevelumiieurerllcommssiuseelq
   print_string "***********************************************************************************\n";
   print_string "Welcome to the Boggle Game !! Here's a Boggle generated for you ! Try to solve it by your own\n";
   let random_letter_fr = RandomLetter.picker RandomLetter.Distribution.fr in
-  let t = Board.from_string "ratebrabreoticie"
+  let board = Board.make 4 random_letter_fr
   in
-  match t with
-  | None -> print_string("Désolées pas carré")
-  | Some(board) ->Board.print board;
+  Board.print board;
   print_string "\n";
   print_string "\nOr tap enter to see the solutions if you are lazy !\n";
   read_line();
@@ -29,8 +27,18 @@ let main () =(*"eibnrefclmmuerkpseeniagecewieiehusisevelumiieurerllcommssiuseelq
   match dict with
   |None->print_string "problem";
   |Some d->
-  Iter.iter (fun x -> print_string ((Path.to_string board x)^" ")) (Solver.backtrack board d Path.empty (0,0));;
-(* Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d));; *)
+(*   Iter.iter (fun x -> print_string x )(Lexicon.to_iter d);; *)
+(*  if Lexicon.has_empty_word d then print_string "il y a le mot vide\n" else print_string "il n'y a pas le mot vide";; *)
+
+(*   Iter.iter (fun x -> print_string ((Path.to_string board x)^"")) (Solver.backtrack board d Path.empty (0,3));; *)
+let it_mots = Iter.iter (fun x -> print_string (x^" ")) (Path.iter_to_words board (Solver.find_all_paths board d)) in
+  let list_mots = List.sort_uniq (fun a b -> if String.length a < String.length b then -1 else if String.length a > String.length b then 1 else 0) (Iter.to_rev_list (Path.iter_to_words board (Solver.find_all_paths board d))) in
+
+  let rec parcours_liste l =
+	match l with
+	| [] -> print_string("\n")
+	| t::q -> print_string(t ^ " "); parcours_liste q
+  in parcours_liste list_mots;;
 
   (*let board = Board.from_string "abcd" in
     match board with
