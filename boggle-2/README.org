@@ -1,0 +1,21 @@
+* Boggle
+
+A [[https://en.wikipedia.org/wiki/Boggle][Boggle]] game implementation in OCaml, also meant as a student
+project.
+
+** Build
+
+=$ jbuilder build=
+
+** Run
+
+*** Solver/grid generator
+
+These command must be ran in the project root.
+
+=$ jbuilder exec boggle= will print a grid, wait for the user, and
+print the solutions.
+
+=$ jbuilder exec boggle writesomeletters= will print the solutions of
+the grid composed of the letters "writesomeletters" (in the usual
+reading order). writesomeletters must have a square number of letters.
