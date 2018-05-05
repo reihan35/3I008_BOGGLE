@@ -34,7 +34,11 @@ let reset_board () =
   State.Board.reset();
   State.Path.reset();
   Html.Path.display();
-  Html.Board.display()
+  Html.Board.display();
+  let a = Dom_html.getElementById "check_word" in
+  let opt = Dom_html.CoerceTo.button a in
+  let b = Js.Opt.get opt (fun() -> failwith "erreur") in
+  b##.disabled := Js._false
 
   (*not_implemented "reset_board"*)
 
