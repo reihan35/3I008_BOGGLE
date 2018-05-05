@@ -1,8 +1,8 @@
 # jbuilder build @web/DEFAULT
 # OCAMLPARAM: unset
-# Workspace root: /home/fati/Bureau/boggle
-$ /home/fati/.opam/4.06.0/bin/ocamlfind printconf path > /tmp/jbuilddafde0.output
-$ /home/fati/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuild4a432a.output
+# Workspace root: /home/fati/UPMC/L3/3I008_BOGGLE/boggle-2
+$ /home/fati/.opam/4.06.0/bin/ocamlfind printconf path > /tmp/jbuildbd9fcd.output
+$ /home/fati/.opam/4.06.0/bin/ocamlc.opt -config > /tmp/jbuild57ce2d.output
 # Jbuilder context:
 #  ((name default)
 #   (kind default)

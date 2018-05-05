@@ -1,6 +1,6 @@
 B ../_build/default/lib
 B ../_build/default/web
-FLG -ppx '/home/fati/Bureau/boggle/_build/default/.ppx/js_of_ocaml-ppx/ppx.exe --as-ppx'
+FLG -ppx '/home/fati/UPMC/L3/3I008_BOGGLE/boggle-2/_build/default/.ppx/js_of_ocaml-ppx/ppx.exe --as-ppx'
 FLG -w -40
 PKG bytes
 PKG js_of_ocaml
